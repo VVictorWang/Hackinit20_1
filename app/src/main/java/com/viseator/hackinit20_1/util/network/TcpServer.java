@@ -6,8 +6,6 @@ import android.os.Message;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -46,14 +44,10 @@ public class TcpServer {
                     ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
                     Object obj =  objectInputStream.readObject();
-
-                    OutputStream outputStream = socket.getOutputStream();
-                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-                    objectOutputStream.writeObject(obj);
-                    objectOutputStream.flush();
-
-                    objectOutputStream.close();
-                    outputStream.close();
+                    Message msg = Message.obtain();
+                    msg.what = RECEIVE_REQUEST;
+                    msg.obj = obj;
+                    handler.sendMessage(msg);
                     objectInputStream.close();
                     inputStream.close();
                 } catch (IOException | ClassNotFoundException e) {
