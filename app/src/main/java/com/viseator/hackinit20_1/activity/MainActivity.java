@@ -2,15 +2,12 @@ package com.viseator.hackinit20_1.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +29,6 @@ import com.viseator.hackinit20_1.util.network.TcpClient;
 import com.viseator.hackinit20_1.util.network.TcpServer;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
     public String ipAddress;
