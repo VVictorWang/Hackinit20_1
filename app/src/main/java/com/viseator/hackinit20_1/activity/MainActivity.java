@@ -5,8 +5,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
+import com.viseator.hackinit20_1.data.DataBean;
+import com.viseator.hackinit20_1.data.GameData;
 import com.viseator.hackinit20_1.util.ConvertData;
 import com.viseator.hackinit20_1.util.network.ComUtil;
 import com.viseator.hackinit20_1.util.network.GetNetworkInfo;
@@ -17,6 +20,7 @@ public class MainActivity extends BaseActivity {
     public String ipAddress;
     private TcpServer mTcpServer;
     private TcpClient mTcpClient;
+    private GameData mGameData;
     private static final String TAG = "@vir MainActivity";
 
 
@@ -38,6 +42,17 @@ public class MainActivity extends BaseActivity {
                         Log.d(TAG, "tcp done");
                     }else{
                         Log.d(TAG, (String)msg.obj);
+                        Gson gson = new Gson();
+                        DataBean result = gson.fromJson((String) msg.obj, DataBean.class);
+                        switch (result.getCode()) {
+                            case 1:
+                                saveDataToDataBase(result);
+                                break;
+                            case 2:
+                                Log.d(TAG, result.getMessage());
+                                break;
+                        }
+
                     }
 
                    break;
@@ -63,6 +78,7 @@ public class MainActivity extends BaseActivity {
         mComUtil = new ComUtil(mHandler);
         mComUtil.startReceiveMsg();
         mComUtil.broadCast(ConvertData.objectToByte(GetNetworkInfo.getIp(this)));
+        mGameData = GameData.getInstance(getGameDataEntityDao());
 
     }
 
@@ -77,4 +93,7 @@ public class MainActivity extends BaseActivity {
         mTcpClient.sendRequest(ipAddress, "test");
     }
 
+    private void saveDataToDataBase(DataBean dataBean) {
+        mGameData.addGameData(dataBean.getName(), dataBean.getTime(), dataBean.isIsOpen());
+    }
 }
