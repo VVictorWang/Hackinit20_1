@@ -12,9 +12,6 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import xyz.viseator.anonymouscard.data.DataPackage;
-import xyz.viseator.anonymouscard.data.DataStore;
-import xyz.viseator.anonymouscard.data.UDPDataPackage;
 
 /**
  * Created by viseator on 2016/12/23.
@@ -25,14 +22,10 @@ import xyz.viseator.anonymouscard.data.UDPDataPackage;
 public class TcpServer {
     public static final int SERVER_PORT = 7889;
     public static final int RECEIVE_REQUEST = 110;
-    private DataStore dataStore;
     private Thread thread;
     private Handler handler;
 
 
-    public TcpServer(DataStore dataStore) {
-        this.dataStore = dataStore;
-    }
 
     class RunServer implements Runnable {
         @Override
@@ -52,17 +45,11 @@ public class TcpServer {
                     inputStream = socket.getInputStream();
                     ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
-                    UDPDataPackage udpDataPackage = (UDPDataPackage) objectInputStream.readObject();
-                    DataPackage dataPackage = dataStore.getDataById(udpDataPackage.getId());
-                    if (dataPackage != null) {
-                        Message message = new Message();
-                        message.what = RECEIVE_REQUEST;
-                        handler.sendMessage(message);
-                    }
+                    Object obj =  objectInputStream.readObject();
 
                     OutputStream outputStream = socket.getOutputStream();
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-                    objectOutputStream.writeObject(dataPackage);
+                    objectOutputStream.writeObject(obj);
                     objectOutputStream.flush();
 
                     objectOutputStream.close();
