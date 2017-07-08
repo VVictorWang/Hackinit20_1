@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/game_hour_all"
         android:layout_marginTop="10dp"
+        android:text="今日游戏记录: "
         />
 
     <android.support.v7.widget.CardView

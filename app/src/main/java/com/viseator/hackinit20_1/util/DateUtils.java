@@ -1,8 +1,7 @@
 package com.viseator.hackinit20_1.util;
 
-import com.viseator.hackinit20_1.data.GameInfo;
+import com.viseator.hackinit20_1.data.DataBean;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,14 +14,14 @@ import java.util.List;
  */
 
 public class DateUtils {
-    public static List<GameInfo> sortGameInfo(List<GameInfo> gameInfos) {
-        List<GameInfo> result = new ArrayList<>();
-        GameInfo[] gameInfos1 = new GameInfo[gameInfos.size()];
+    public static List<DataBean> sortGameInfo(List<DataBean> gameInfos) {
+        List<DataBean> result = new ArrayList<>();
+        DataBean[] gameInfos1 = new DataBean[gameInfos.size()];
         gameInfos1 = gameInfos.toArray(gameInfos1);
         for (int i = 0; i < gameInfos.size(); i++) {
             for (int j = i + 1; j < gameInfos.size(); j++) {
                 if (gameInfos1[i].getTime() > gameInfos1[j].getTime()) {
-                    GameInfo temp = gameInfos1[i];
+                    DataBean temp = gameInfos1[i];
                     gameInfos1[i] = gameInfos1[j];
                     gameInfos1[j] = temp;
                 }
@@ -39,5 +38,11 @@ public class DateUtils {
         SimpleDateFormat format = new SimpleDateFormat("EEEE");
         String week = format.format(date);
         return week;
+    }
+    public static String getHourbyTime(long time) {
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+        String hour = format.format(date);
+        return hour;
     }
 }
