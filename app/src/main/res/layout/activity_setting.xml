@@ -49,7 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:text="昵称"
             />
 
@@ -59,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
 
             />
 
@@ -69,14 +70,13 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/profile_name_layout"
-        android:layout_marginTop="6dp"
         android:background="@color/gray"/>
 
     <RelativeLayout
         android:id="@+id/set_time_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setting_toolbar"
+        android:layout_below="@+id/profile_name_layout"
         android:layout_marginTop="3dp"
         >
 
@@ -84,25 +84,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="昵称"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:text="孩子每日玩游戏多久提醒您"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-
-            />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/profile_name_layout"
-        android:layout_marginTop="6dp"
+        android:layout_below="@+id/set_time_layout"
         android:background="@color/gray"/>
+
+
 </RelativeLayout>
