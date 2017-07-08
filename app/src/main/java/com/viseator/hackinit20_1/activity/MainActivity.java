@@ -3,34 +3,19 @@ package com.viseator.hackinit20_1.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.widget.Button;
-import android.view.View;
 
 import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
-import com.viseator.hackinit20_1.adapters.FragmentAdapter;
-import com.viseator.hackinit20_1.data.UDPDataPackage;
-import com.viseator.hackinit20_1.fragments.TodayDataFragment;
 import com.viseator.hackinit20_1.util.ConvertData;
 import com.viseator.hackinit20_1.util.network.ComUtil;
 import com.viseator.hackinit20_1.util.network.GetNetworkInfo;
 import com.viseator.hackinit20_1.util.network.TcpClient;
 import com.viseator.hackinit20_1.util.network.TcpServer;
 
-import java.util.Arrays;
-
-import butterknife.BindView;
-import butterknife.OnClick;
-
 public class MainActivity extends BaseActivity {
     public String ipAddress;
     private TcpServer mTcpServer;
-    @BindView(R.id.buttion)
-    Button mButton;
     private TcpClient mTcpClient;
     private static final String TAG = "@vir MainActivity";
 
@@ -92,8 +77,4 @@ public class MainActivity extends BaseActivity {
         mTcpClient.sendRequest(ipAddress, "test");
     }
 
-  @OnClick(R.id.buttion)
-    public void click() {
-        mTcpClient.sendRequest(ipAddress,"Vir");
-    }
 }
