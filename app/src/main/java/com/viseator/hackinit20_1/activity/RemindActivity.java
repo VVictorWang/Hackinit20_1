@@ -47,7 +47,6 @@ public class RemindActivity extends BaseActivity {
             GameDataEntity entity = new GameDataEntity();
             entity.setTime(System.currentTimeMillis());
             entity.setName("走出家门");
-            entity.setIsOpen(true);
             mGameDataEntities.add(entity);
 //            sidebardata[i] = DateUtils.getWeekbyTime(System.currentTimeMillis()).charAt(0)+"";
         }

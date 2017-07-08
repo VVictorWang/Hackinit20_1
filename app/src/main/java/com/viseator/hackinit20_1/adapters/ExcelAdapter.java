@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.viseator.hackinit20_1.R;
+import com.viseator.hackinit20_1.data.DataCount;
 import com.viseator.hackinit20_1.data.GameDataEntity;
 import com.viseator.hackinit20_1.util.DateUtils;
 
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class ExcelAdapter extends RecyclerView.Adapter<ExcelAdapter.MyViewHolder> {
     private Context mContext;
-    private List<GameDataEntity> mGameDataEntities = new ArrayList<>();
+    private List<DataCount> mGameDataEntities = new ArrayList<>();
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView day;
@@ -41,7 +42,7 @@ public class ExcelAdapter extends RecyclerView.Adapter<ExcelAdapter.MyViewHolder
         mContext = context;
     }
 
-    public ExcelAdapter(Context context, List<GameDataEntity> infor) {
+    public ExcelAdapter(Context context, List<DataCount> infor) {
         mContext = context;
         mGameDataEntities = infor;
     }
@@ -58,9 +59,9 @@ public class ExcelAdapter extends RecyclerView.Adapter<ExcelAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        GameDataEntity entity = mGameDataEntities.get(position);
-        holder.day.setText(DateUtils.formatDate(entity.getTime()));
-//        int runtime = entity.getRuntime();
-//        holder.hour.setText((runtime / 1000) % 60 + "分钟");
+        DataCount entity = mGameDataEntities.get(position);
+        holder.day.setText(DateUtils.formatDate(entity.getDate()));
+        int runtime = entity.getRuntime();
+        holder.hour.setText((runtime / 1000) % 60 + "分钟");
     }
 }

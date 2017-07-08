@@ -5,7 +5,6 @@ import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by viseator on 7/8/17.
- *
  * @author Wu Di
  * Email: viseator@gmail.com
  */
