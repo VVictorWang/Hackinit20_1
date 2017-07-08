@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity {
     private AnimationDrawable mAnimationDrawable;
     @BindView(R.id.main_imageview)
     ImageView mImageView;
-    private RelativeLayout record,behavior;
+    private RelativeLayout behavior;
     private ImageView voiceView;
     private static final String TAG = "@vir MainActivity";
     private Handler mHandler = new Handler(new Handler.Callback() {
