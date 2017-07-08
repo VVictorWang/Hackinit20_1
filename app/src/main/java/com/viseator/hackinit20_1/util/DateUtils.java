@@ -40,4 +40,10 @@ public class DateUtils {
         String week = format.format(date);
         return week;
     }
+    public static String getHourbyTime(long time) {
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm");
+        String hour = format.format(date);
+        return hour;
+    }
 }
