@@ -42,7 +42,10 @@ public class MainActivity extends BaseActivity {
                 case TcpServer.RECEIVE_REQUEST:
                     if (msg.obj.equals("test")) {
                         Log.d(TAG, "tcp done");
+                    }else{
+                        Log.d(TAG, (String)msg.obj);
                     }
+
                    break;
             }
             return true;
