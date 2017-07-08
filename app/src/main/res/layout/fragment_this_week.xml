@@ -1,12 +1,41 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.viseator.hackinit20_1.fragments.ThisWeekFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.viseator.hackinit20_1.fragments.TodayDataFragment">
+
 
     <TextView
+        android:id="@+id/game_hour_all_week"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        />
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/game_hour_all_week"
+        android:id="@+id/hour_list_week"
+        android:layout_marginLeft="10dp"
+        android:background="@color/gray"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hour_list_week"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="2dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/game_record_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

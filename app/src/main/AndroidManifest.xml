@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".activity.MonitorGameActivity">
         </activity>
+        <activity android:name=".activity.SettingActivity"/>
     </application>
 
 </manifest>
