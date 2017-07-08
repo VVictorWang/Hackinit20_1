@@ -8,13 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.viseator.hackinit20_1.R;
-import com.viseator.hackinit20_1.data.GameInfo;
+import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.util.DateUtils;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,7 +22,7 @@ import java.util.List;
 
 public class GamerecordAdapter extends RecyclerView.Adapter<GamerecordAdapter.MyViewHolder>{
     private Context mContext;
-    private List<GameInfo> mGameInfos = new ArrayList<>();
+    private List<DataBean> mGameInfos = new ArrayList<>();
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView time;
         private TextView event;
@@ -40,7 +37,7 @@ public class GamerecordAdapter extends RecyclerView.Adapter<GamerecordAdapter.My
         mContext = context;
     }
 
-    public GamerecordAdapter(Context context, List<GameInfo> gameInfos) {
+    public GamerecordAdapter(Context context, List<DataBean> gameInfos) {
         mContext = context;
         mGameInfos = gameInfos;
     }
@@ -53,12 +50,13 @@ public class GamerecordAdapter extends RecyclerView.Adapter<GamerecordAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         String week = getDayForSection(position);
-        final GameInfo gameinfo = mGameInfos.get(position);
+        final DataBean gameinfo = mGameInfos.get(position);
         if (position == getPositionForSection(week)) {
             holder.time.setText(week);
             holder.event.setText("");
         } else {
             holder.time.setText(DateUtils.getHourbyTime(gameinfo.getTime()));
+            holder.event.setText(gameinfo.getMessage());
         }
     }
 
