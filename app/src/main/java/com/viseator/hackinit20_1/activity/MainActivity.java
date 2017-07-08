@@ -159,13 +159,7 @@ public class MainActivity extends BaseActivity {
         voiceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-                RecordFragment recordFragment = new RecordFragment();
-//                recordFragment.show(transaction, "record");
-                transaction.replace(R.id.relative_layout, recordFragment);
-
-                transaction.commit();
 
             }
         });
@@ -181,6 +175,7 @@ public class MainActivity extends BaseActivity {
                 send.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        sendMessage("请注意玩游戏时间哦");
                         dialog.dismiss();
                     }
                 });

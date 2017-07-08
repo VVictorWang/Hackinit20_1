@@ -12,6 +12,15 @@ import android.view.ViewGroup;
 
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.adapters.ExcelAdapter;
+import com.viseator.hackinit20_1.data.DataBean;
+import com.viseator.hackinit20_1.data.GameData;
+import com.viseator.hackinit20_1.data.GameDataEntity;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class ThisWeekFragment extends Fragment {
@@ -23,6 +32,7 @@ public class ThisWeekFragment extends Fragment {
     private ExcelAdapter weekday_adapter;
     private View rootView;
 
+    private List<GameDataEntity> mGameDataEntities = new ArrayList<>();
 
     public ThisWeekFragment() {
         // Required empty public constructor
@@ -57,12 +67,42 @@ public class ThisWeekFragment extends Fragment {
     }
 
     private void initView() {
+        initData();
+
         weekday_list = (RecyclerView) rootView.findViewById(R.id.hour_list_week);
-        weekday_adapter = new ExcelAdapter(getActivity());
+        weekday_adapter = new ExcelAdapter(getActivity(),mGameDataEntities);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         weekday_list.setLayoutManager(linearLayoutManager);
         weekday_list.setAdapter(weekday_adapter);
+
+    }
+
+    private void initData() {
+        Calendar calendar = Calendar.getInstance();
+        for (int i = 0; i < 7; calendar.add(Calendar.DATE, - 1)) {
+            Date date = calendar.getTime();
+            List<GameDataEntity> gameDataEntities = GameData.getInstance().getDataByDay(date);
+            int time = 0;
+            String name=null, oldname=null;
+            GameDataEntity oldentity = new GameDataEntity();
+            for (GameDataEntity entity : gameDataEntities) {
+                name = entity.getName();
+                if (oldname == null) {
+                    continue;
+                } else if (oldname.equals(name)) {
+                    time += Math.abs(oldentity.getTime() - entity.getTime());
+                }
+                oldentity = entity;
+                oldname = name;
+            }
+            GameDataEntity gameDataEntity = new GameDataEntity();
+            gameDataEntity.setTime(date.getTime());
+            gameDataEntity.setRuntime(time);
+            mGameDataEntities.add(gameDataEntity);
+
+        }
+
 
     }
 

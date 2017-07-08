@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.R.attr.format;
+
 /**
  * Created by victor on 7/9/17.
  * email: chengyiwang@hustunique.com
@@ -48,6 +50,12 @@ public class DateUtils {
         SimpleDateFormat format = new SimpleDateFormat("hh:mm");
         String hour = format.format(date);
         return hour;
+    }
+
+    public static String formatDate(long time) {
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("MM:dd");
+        return format.format(date);
     }
 
     public static int sumEveryDay(List<GameDataEntity> gameDataEntities, Date date) {
