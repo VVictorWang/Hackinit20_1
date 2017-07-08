@@ -17,6 +17,7 @@ import com.viseator.hackinit20_1.data.GameData;
 import com.viseator.hackinit20_1.data.GameDataEntity;
 import com.viseator.hackinit20_1.util.DateUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,7 +31,7 @@ public class TodayDataFragment extends Fragment {
     private View rootview;
 
 
-    private List<GameDataEntity> mGamerecords;
+    private List<GameDataEntity> mGamerecords = new ArrayList<>();
     private String mParam1;
     private String mParam2;
 
@@ -39,15 +40,6 @@ public class TodayDataFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TodayDataFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static TodayDataFragment newInstance(String param1, String param2) {
         TodayDataFragment fragment = new TodayDataFragment();
         Bundle args = new Bundle();
@@ -86,13 +78,18 @@ public class TodayDataFragment extends Fragment {
     }
 
     private void initData() {
+        for (int i = 0; i < 10; i++) {
 
-        mGamerecords = GameData.getInstance().getDataList();
-        if (mGamerecords != null) {
-            mGamerecords = DateUtils.sortGameInfo(mGamerecords);
+            GameDataEntity entity = new GameDataEntity(System.currentTimeMillis(), "打开王者荣耀", true);
+            mGamerecords.add(entity);
+        }
+
+//        mGamerecords = GameData.getInstance().getDataList();
+//        if (mGamerecords != null) {
+//            mGamerecords = DateUtils.sortGameInfo(mGamerecords);
             mGamerecordAdapter = new GamerecordAdapter(mActivity, mGamerecords);
             mRecyclerView.setAdapter(mGamerecordAdapter);
-        }
+//        }
     }
 
 }

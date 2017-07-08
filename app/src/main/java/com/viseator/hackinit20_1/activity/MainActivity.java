@@ -5,6 +5,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.data.GameData;
+import com.viseator.hackinit20_1.fragments.RecordFragment;
 import com.viseator.hackinit20_1.util.ActivityUtil;
 import com.viseator.hackinit20_1.util.ConvertData;
 import com.viseator.hackinit20_1.util.network.ComUtil;
@@ -33,9 +35,9 @@ public class MainActivity extends BaseActivity {
     private AnimationDrawable mAnimationDrawable;
     @BindView(R.id.main_imageview)
     ImageView mImageView;
+    private RelativeLayout record,behavior;
+    private ImageView voiceView;
     private static final String TAG = "@vir MainActivity";
-
-
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -106,6 +108,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         record = (RelativeLayout) findViewById(R.id.monitor_game);
+        behavior = (RelativeLayout) findViewById(R.id.monitor_behavior);
+        voiceView = (ImageView) findViewById(R.id.input_voice);
         mAnimationDrawable = new AnimationDrawable();
         addFrames(mAnimationDrawable, 30);
         mImageView.setImageDrawable(mAnimationDrawable);
@@ -127,6 +131,21 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ActivityUtil.startActivity(MainActivity.this, MonitorGameActivity.class);
+            }
+        });
+        voiceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                RecordFragment recordFragment = new RecordFragment();
+                recordFragment.show(transaction,"record");
+
+            }
+        });
+        behavior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.startActivity(MainActivity.this, MonitorBehaviorActivity.class);
             }
         });
     }

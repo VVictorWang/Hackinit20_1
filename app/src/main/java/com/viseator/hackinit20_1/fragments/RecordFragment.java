@@ -1,0 +1,52 @@
+package com.viseator.hackinit20_1.fragments;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.viseator.hackinit20_1.R;
+
+/**
+ * Created by victor on 7/9/17.
+ * email: chengyiwang@hustunique.com
+ * blog: www.victorwang.science                                            #
+ */
+
+public class RecordFragment extends DialogFragment {
+    private Activity mActivity;
+    private EditText mEditText;
+    private ImageView record;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mActivity = getActivity();
+    }
+
+    public RecordFragment() {
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        View view = mActivity.getLayoutInflater().inflate(R.layout.fragment_record_voice, null);
+        mEditText = (EditText) view.findViewById(R.id.edit_text_voice);
+        record = (ImageView) view.findViewById(R.id.record_image_view);
+        record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        builder.setView(view);
+        return builder.create();
+    }
+}

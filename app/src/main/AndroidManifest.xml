@@ -24,6 +24,12 @@
         <activity android:name=".activity.MonitorGameActivity">
         </activity>
         <activity android:name=".activity.SettingActivity"/>
+        <activity android:name=".activity.RemindActivity">
+        </activity>
+        <activity android:name=".activity.ContactRecordActivity">
+        </activity>
+        <activity android:name=".activity.MonitorBehaviorActivity">
+        </activity>
     </application>
 
 </manifest>
