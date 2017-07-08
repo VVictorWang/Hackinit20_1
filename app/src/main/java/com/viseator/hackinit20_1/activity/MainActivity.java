@@ -186,6 +186,15 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    private void sendMessage(String message) {
+        DataBean dataBean = new DataBean();
+        dataBean.setCode(4);
+        dataBean.setMessage(message);
+        Gson gson = new Gson();
+        String data = gson.toJson(dataBean, dataBean.getClass());
+        mTcpClient.sendRequest(ipAddress, data);
+    }
+
     @OnClick(R.id.send_text)
     public void sendText() {
     }
