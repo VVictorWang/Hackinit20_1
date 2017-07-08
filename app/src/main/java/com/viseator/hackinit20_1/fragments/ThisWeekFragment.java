@@ -28,7 +28,7 @@ public class ThisWeekFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-    private RecyclerView weekday_list,game_list;
+    private RecyclerView weekday_list, game_list;
     private ExcelAdapter weekday_adapter;
     private View rootView;
 
@@ -70,7 +70,7 @@ public class ThisWeekFragment extends Fragment {
         initData();
 
         weekday_list = (RecyclerView) rootView.findViewById(R.id.hour_list_week);
-        weekday_adapter = new ExcelAdapter(getActivity(),mGameDataEntities);
+        weekday_adapter = new ExcelAdapter(getActivity(), mGameDataEntities);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         weekday_list.setLayoutManager(linearLayoutManager);
@@ -80,11 +80,11 @@ public class ThisWeekFragment extends Fragment {
 
     private void initData() {
         Calendar calendar = Calendar.getInstance();
-        for (int i = 0; i < 7; calendar.add(Calendar.DATE, - 1)) {
+        for (int i = 0; i < 7; calendar.add(Calendar.DATE, -1), i++) {
             Date date = calendar.getTime();
             List<GameDataEntity> gameDataEntities = GameData.getInstance().getDataByDay(date);
             int time = 0;
-            String name=null, oldname=null;
+            String name = null, oldname = null;
             GameDataEntity oldentity = new GameDataEntity();
             for (GameDataEntity entity : gameDataEntities) {
                 name = entity.getName();
@@ -104,9 +104,6 @@ public class ThisWeekFragment extends Fragment {
 
 
     }
-
-
-
 
 
 }

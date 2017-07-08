@@ -22,6 +22,7 @@ import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.data.GameData;
+import com.viseator.hackinit20_1.data.GameDataEntity;
 import com.viseator.hackinit20_1.fragments.RecordFragment;
 import com.viseator.hackinit20_1.util.ActivityUtil;
 import com.viseator.hackinit20_1.util.ConvertData;
@@ -29,6 +30,9 @@ import com.viseator.hackinit20_1.util.network.ComUtil;
 import com.viseator.hackinit20_1.util.network.GetNetworkInfo;
 import com.viseator.hackinit20_1.util.network.TcpClient;
 import com.viseator.hackinit20_1.util.network.TcpServer;
+
+import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 
@@ -138,6 +142,43 @@ public class MainActivity extends BaseActivity {
         mComUtil.startReceiveMsg();
         mComUtil.broadCast(ConvertData.objectToByte(GetNetworkInfo.getIp(this)));
         mGameData = GameData.getInstance(getGameDataEntityDao());
+        generate();
+
+    }
+
+    private void generate() {
+        mGameData.delAll();
+        Random random = new Random();
+        boolean a1 = false;
+        boolean a2 = false;
+        boolean a3 = false;
+        for (int i = 0; i < 50; i++) {
+            int ran1 = random.nextInt(3);
+            GameDataEntity gameDataEntity = new GameDataEntity();
+
+            switch (ran1) {
+                case 0:
+                    gameDataEntity.setName("王者荣耀");
+                    a1 = !a1;
+                    gameDataEntity.setIsOpen(a1);
+                    break;
+                case 1:
+                    gameDataEntity.setName("阴阳师");
+                    a2 = !a2;
+                    gameDataEntity.setIsOpen(a2);
+                    break;
+                case 2:
+                    gameDataEntity.setName("qq");
+                    a3 = !a3;
+                    gameDataEntity.setIsOpen(a3);
+                    break;
+            }
+            int ran2 = random.nextInt(172800000);
+            gameDataEntity.setTime(System.currentTimeMillis() - ran2);
+            mGameData.addGameData(gameDataEntity.getName(), gameDataEntity.getTime(),
+                    gameDataEntity.getIsOpen());
+        }
+        List<GameDataEntity> list = mGameData.getDataList();
 
     }
 
