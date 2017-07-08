@@ -43,8 +43,6 @@ public class MainActivity extends BaseActivity {
     private AnimationDrawable mAnimationDrawable;
     @BindView(R.id.main_imageview)
     ImageView mImageView;
-    @BindView(R.id.send_text)
-    RelativeLayout mRelativeLayout;
     private RelativeLayout behavior;
     private ImageView voiceView;
     private static final String TAG = "@vir MainActivity";
@@ -167,7 +165,7 @@ public class MainActivity extends BaseActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
                 RecordFragment recordFragment = new RecordFragment();
-                recordFragment.show(transaction, "record");
+//                recordFragment.show(transaction, "record");
                 transaction.replace(R.id.relative_layout, recordFragment);
 
                 transaction.commit();
@@ -202,8 +200,6 @@ public class MainActivity extends BaseActivity {
         mTcpClient.sendRequest(ipAddress, data);
     }
 
-    @OnClick(R.id.send_text)
-    public void sendText() {
-    }
+
 
 }

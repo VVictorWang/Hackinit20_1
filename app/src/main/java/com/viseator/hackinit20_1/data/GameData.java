@@ -1,5 +1,6 @@
 package com.viseator.hackinit20_1.data;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,6 +11,7 @@ import java.util.List;
  */
 
 public class GameData {
+    public static final long MILLS_OF_DAY = 24 * 60 * 60 * 100;
     private static GameData INSTANCE = null;
     private GameDataEntityDao mGameDataEntityDao;
 
@@ -42,4 +44,10 @@ public class GameData {
     public List<GameDataEntity> getDataList() {
         return mGameDataEntityDao.queryBuilder().list();
     }
+
+    public List<GameDataEntity> getDataByDay(Date date) {
+        return mGameDataEntityDao.queryBuilder().where(GameDataEntityDao.Properties.Time.between
+                (date.getTime(), date.getTime() + MILLS_OF_DAY)).list();
+    }
+
 }

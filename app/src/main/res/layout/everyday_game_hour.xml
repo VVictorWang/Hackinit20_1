@@ -10,6 +10,7 @@
         android:id="@+id/date_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/back_week"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="7.08"
@@ -18,6 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/back_week"
         android:layout_below="@+id/date_text"
         android:id="@+id/everyday_hour_text"
         android:layout_centerHorizontal="true"

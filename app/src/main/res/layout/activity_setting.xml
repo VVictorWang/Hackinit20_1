@@ -7,21 +7,26 @@
     <RelativeLayout
         android:id="@+id/setting_toolbar"
         android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
         android:layout_height="wrap_content"
         >
 
         <ImageView
             android:id="@+id/back_image_setting"
+            android:background="@color/colorPrimaryDark"
             android:layout_width="30dp"
+            android:layout_centerVertical="true"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/icon_return"
             />
 
         <TextView
             android:id="@+id/title_toolbar"
             android:layout_width="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"

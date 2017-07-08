@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/monitor_behavior_toolbar"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:layout_height="wrap_content"
         >
 
@@ -15,9 +15,10 @@
             android:id="@+id/back_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:background="@color/colorPrimaryDark"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/icon_return"
             />
 
         <TextView
@@ -26,6 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
             android:text="行为监控"
             android:textSize="18dp"
             />
