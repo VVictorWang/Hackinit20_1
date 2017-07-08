@@ -1,5 +1,7 @@
 package com.viseator.hackinit20_1.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import com.viseator.hackinit20_1.util.network.TcpClient;
 import com.viseator.hackinit20_1.util.network.TcpServer;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
     public String ipAddress;
@@ -35,6 +38,8 @@ public class MainActivity extends BaseActivity {
     private AnimationDrawable mAnimationDrawable;
     @BindView(R.id.main_imageview)
     ImageView mImageView;
+    @BindView(R.id.send_text)
+    RelativeLayout mRelativeLayout;
     private RelativeLayout behavior;
     private ImageView voiceView;
     private static final String TAG = "@vir MainActivity";
@@ -54,8 +59,8 @@ public class MainActivity extends BaseActivity {
                 case TcpServer.RECEIVE_REQUEST:
                     if (msg.obj.equals("test")) {
                         Log.d(TAG, "tcp done");
-                    }else{
-                        Log.d(TAG, (String)msg.obj);
+                    } else {
+                        Log.d(TAG, (String) msg.obj);
                         Gson gson = new Gson();
                         DataBean result = gson.fromJson((String) msg.obj, DataBean.class);
                         switch (result.getCode()) {
@@ -63,13 +68,14 @@ public class MainActivity extends BaseActivity {
                                 saveDataToDataBase(result);
                                 break;
                             case 2:
-                                Log.d(TAG, result.getMessage());
+                                showDialog(result.getMessage());
                                 break;
+
                         }
 
                     }
 
-                   break;
+                    break;
             }
             return true;
         }
@@ -79,12 +85,27 @@ public class MainActivity extends BaseActivity {
 
     private void addFrames(AnimationDrawable animationDrawable, int n) {
         for (int i = 1; i < n; i++) {
-            String name = "a" +String.valueOf(i);
+            String name = "a" + String.valueOf(i);
             Resources res = getResources();
             int id = res.getIdentifier(name, "drawable", this.getPackageName());
             animationDrawable.addFrame(getDrawable(id), 33);
         }
+
     }
+
+    private void showDialog(String message) {
+        AlertDialog dialog = new AlertDialog.Builder(this).setCustomTitle(null).setMessage
+                (message).setPositiveButton("回复", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).setNegativeButton("取消", null).create();
+        dialog.show();
+    }
+
+    private Handler handler = new Handler();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +147,7 @@ public class MainActivity extends BaseActivity {
     private void saveDataToDataBase(DataBean dataBean) {
         mGameData.addGameData(dataBean.getName(), dataBean.getTime(), dataBean.isIsOpen());
     }
+
     private void initEvent() {
         record.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +160,7 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 RecordFragment recordFragment = new RecordFragment();
-                recordFragment.show(transaction,"record");
+                recordFragment.show(transaction, "record");
 
             }
         });
@@ -148,6 +170,10 @@ public class MainActivity extends BaseActivity {
                 ActivityUtil.startActivity(MainActivity.this, MonitorBehaviorActivity.class);
             }
         });
+    }
+
+    @OnClick(R.id.send_text)
+    public void sendText() {
     }
 
 }

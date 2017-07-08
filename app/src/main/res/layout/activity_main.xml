@@ -110,7 +110,9 @@
         >
 
         <RelativeLayout
+            android:clickable="true"
             android:background="@color/colorPrimaryDark"
+            android:id="@+id/send_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
