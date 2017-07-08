@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.viseator.hackinit20_1.data.DaoSession;
+import com.viseator.hackinit20_1.data.GameDataEntityDao;
+
 import butterknife.ButterKnife;
 
 /**
@@ -47,6 +50,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void baseInit();
 
     protected abstract void initView();
+    protected GameDataEntityDao getGameDataEntityDao() {
+        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        return daoSession.getGameDataEntityDao();
+    }
 
 }
 
