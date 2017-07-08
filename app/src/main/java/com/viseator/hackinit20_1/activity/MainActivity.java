@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -98,6 +99,20 @@ public class MainActivity extends BaseActivity {
                 (message).setPositiveButton("回复", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_record_voice, null);
+                Button send = (Button) view.findViewById(R.id.send_voice_btn);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setView(view);
+                final Dialog dialog1 = builder.create();
+                dialog1.show();
+                send.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText editText = (EditText) (view.findViewById(R.id.edit_text_voice));
+                        sendMessage(editText.getText().toString());
+                        dialog1.dismiss();
+                    }
+                });
 
             }
         }).setNegativeButton("取消", null).create();
@@ -166,7 +181,7 @@ public class MainActivity extends BaseActivity {
         input_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_record_voice, null);
+                final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_record_voice, null);
                 Button send = (Button) view.findViewById(R.id.send_voice_btn);
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setView(view);
@@ -175,7 +190,8 @@ public class MainActivity extends BaseActivity {
                 send.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        sendMessage("请注意玩游戏时间哦");
+                        EditText editText = (EditText) (view.findViewById(R.id.edit_text_voice));
+                        sendMessage(editText.getText().toString());
                         dialog.dismiss();
                     }
                 });
@@ -198,7 +214,6 @@ public class MainActivity extends BaseActivity {
         String data = gson.toJson(dataBean, dataBean.getClass());
         mTcpClient.sendRequest(ipAddress, data);
     }
-
 
 
 }

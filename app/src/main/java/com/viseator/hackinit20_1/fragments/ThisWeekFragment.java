@@ -98,7 +98,6 @@ public class ThisWeekFragment extends Fragment {
             }
             GameDataEntity gameDataEntity = new GameDataEntity();
             gameDataEntity.setTime(date.getTime());
-            gameDataEntity.setRuntime(time);
             mGameDataEntities.add(gameDataEntity);
 
         }

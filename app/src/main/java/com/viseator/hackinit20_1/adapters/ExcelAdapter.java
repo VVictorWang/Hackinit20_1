@@ -60,7 +60,7 @@ public class ExcelAdapter extends RecyclerView.Adapter<ExcelAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, int position) {
         GameDataEntity entity = mGameDataEntities.get(position);
         holder.day.setText(DateUtils.formatDate(entity.getTime()));
-        int runtime = entity.getRuntime();
-        holder.hour.setText((runtime / 1000) % 60 + "分钟");
+//        int runtime = entity.getRuntime();
+//        holder.hour.setText((runtime / 1000) % 60 + "分钟");
     }
 }
