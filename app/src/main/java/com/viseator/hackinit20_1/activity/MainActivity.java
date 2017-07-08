@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Button;
 
 import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
@@ -15,9 +16,14 @@ import com.viseator.hackinit20_1.util.network.TcpServer;
 
 import java.util.Arrays;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 public class MainActivity extends BaseActivity {
     public String ipAddress;
     private TcpServer mTcpServer;
+    @BindView(R.id.buttion)
+    Button mButton;
     private TcpClient mTcpClient;
     private static final String TAG = "@vir MainActivity";
     private Handler mHandler = new Handler(new Handler.Callback() {
@@ -65,7 +71,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
     }
 
     private void TcpInit() {
@@ -73,5 +78,10 @@ public class MainActivity extends BaseActivity {
         mTcpServer.startServer(mHandler);
         mTcpClient = new TcpClient();
         mTcpClient.sendRequest(ipAddress, "test");
+    }
+
+    @OnClick(R.id.buttion)
+    public void click() {
+        mTcpClient.sendRequest(ipAddress,"Vir");
     }
 }
