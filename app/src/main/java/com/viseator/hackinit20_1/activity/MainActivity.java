@@ -1,6 +1,7 @@
 package com.viseator.hackinit20_1.activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
