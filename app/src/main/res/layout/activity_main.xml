@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,10 +7,95 @@
     android:layout_height="match_parent"
     tools:context="com.viseator.hackinit20_1.activity.MainActivity">
 
-    <Button
-        android:id="@+id/buttion"
-        android:text="test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <include
+        android:id="@+id/main_toolbar"
+        layout="@layout/toolbar"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/monitor_behavior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="300dp"
+        >
+
+        <ImageView
+            android:id="@+id/monitor_game_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/monitor_game_image"
+            android:text="行为监护"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/monitor_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/monitor_behavior"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/monitor_behavior_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/monitor_behavior_image"
+            android:text="手势监控"
+            />
+    </RelativeLayout>
+
+    <GridLayout
+        android:id="@+id/bottom_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:columnCount="2"
+        android:background="@color/gray"
+        android:rowCount="1"
+        >
+
+        <ImageView
+            android:layout_width="190dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/input_text"
+            android:background="@color/white"
+            />
+
+        <ImageView
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:background="@color/white"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/input_voice"
+            />
+    </GridLayout>
+
+
+</RelativeLayout>
