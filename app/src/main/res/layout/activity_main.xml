@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:id="@+id/relative_layout"
     tools:context="com.viseator.hackinit20_1.activity.MainActivity">
 
     <include
         android:id="@+id/main_toolbar"
         layout="@layout/toolbar"
         />
+
 
     <ImageView
         android:id="@+id/main_imageview"

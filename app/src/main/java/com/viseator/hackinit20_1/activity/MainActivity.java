@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
     private TcpServer mTcpServer;
     private TcpClient mTcpClient;
     private GameData mGameData;
-    private RelativeLayout record;
+    private RelativeLayout record, input_text;
     private AnimationDrawable mAnimationDrawable;
     @BindView(R.id.main_imageview)
     ImageView mImageView;
@@ -159,9 +159,22 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
                 RecordFragment recordFragment = new RecordFragment();
                 recordFragment.show(transaction, "record");
+                transaction.replace(R.id.relative_layout, recordFragment);
 
+                transaction.commit();
+
+            }
+        });
+        input_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                RecordFragment recordFragment = new RecordFragment();
+                transaction.replace(R.id.relative_layout, recordFragment);
+                transaction.commit();
             }
         });
         behavior.setOnClickListener(new View.OnClickListener() {

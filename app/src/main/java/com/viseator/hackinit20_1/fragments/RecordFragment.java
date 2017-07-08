@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -19,10 +23,11 @@ import com.viseator.hackinit20_1.R;
  * blog: www.victorwang.science                                            #
  */
 
-public class RecordFragment extends DialogFragment {
+public class RecordFragment extends Fragment {
     private Activity mActivity;
     private EditText mEditText;
     private ImageView record;
+    private View rootView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,21 +37,20 @@ public class RecordFragment extends DialogFragment {
     public RecordFragment() {
     }
 
-    @NonNull
+    @Nullable
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-        View view = mActivity.getLayoutInflater().inflate(R.layout.fragment_record_voice, null);
-        mEditText = (EditText) view.findViewById(R.id.edit_text_voice);
-        record = (ImageView) view.findViewById(R.id.record_image_view);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_record_voice, container, false);
+        mEditText = (EditText) rootView.findViewById(R.id.edit_text_voice);
+        record = (ImageView) rootView.findViewById(R.id.record_image_view);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        builder.setView(view);
-        return builder.create();
+        return rootView;
     }
+
+
 }
