@@ -58,7 +58,7 @@ public class GamerecordAdapter extends RecyclerView.Adapter<GamerecordAdapter.My
             holder.time.setText(week);
             holder.event.setText("");
         } else {
-            holder.time.setText("");
+            holder.time.setText(DateUtils.getHourbyTime(gameinfo.getTime()));
         }
     }
 
