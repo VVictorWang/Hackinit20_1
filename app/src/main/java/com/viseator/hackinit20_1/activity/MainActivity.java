@@ -130,6 +130,7 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
         record = (RelativeLayout) findViewById(R.id.monitor_game);
         behavior = (RelativeLayout) findViewById(R.id.monitor_behavior);
+        input_text = (RelativeLayout) findViewById(R.id.input_text_layout);
         voiceView = (ImageView) findViewById(R.id.input_voice);
         mAnimationDrawable = new AnimationDrawable();
         addFrames(mAnimationDrawable, 30);
