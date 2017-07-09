@@ -1,8 +1,6 @@
 package com.viseator.hackinit20_1.fragments;
 
 import android.app.Activity;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +13,7 @@ import android.widget.TextView;
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.adapters.GamerecordAdapter;
 import com.viseator.hackinit20_1.data.DataBean;
+import com.viseator.hackinit20_1.data.GameDataEntity;
 import com.viseator.hackinit20_1.util.DateUtils;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class TodayDataFragment extends Fragment {
     private View rootview;
 
 
-    private List<DataBean> mGamerecords;
+    private List<GameDataEntity> mGamerecords;
     private String mParam1;
     private String mParam2;
 

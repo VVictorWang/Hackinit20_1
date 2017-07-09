@@ -1,6 +1,9 @@
 package com.viseator.hackinit20_1.util;
 
+
 import com.viseator.hackinit20_1.data.DataBean;
+import com.viseator.hackinit20_1.data.GameData;
+import com.viseator.hackinit20_1.data.GameDataEntity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,14 +17,14 @@ import java.util.List;
  */
 
 public class DateUtils {
-    public static List<DataBean> sortGameInfo(List<DataBean> gameInfos) {
-        List<DataBean> result = new ArrayList<>();
-        DataBean[] gameInfos1 = new DataBean[gameInfos.size()];
+    public static List<GameDataEntity> sortGameInfo(List<GameDataEntity> gameInfos) {
+        List<GameDataEntity> result = new ArrayList<>();
+        GameDataEntity[] gameInfos1 = new GameDataEntity[gameInfos.size()];
         gameInfos1 = gameInfos.toArray(gameInfos1);
         for (int i = 0; i < gameInfos.size(); i++) {
             for (int j = i + 1; j < gameInfos.size(); j++) {
                 if (gameInfos1[i].getTime() > gameInfos1[j].getTime()) {
-                    DataBean temp = gameInfos1[i];
+                    GameDataEntity temp = gameInfos1[i];
                     gameInfos1[i] = gameInfos1[j];
                     gameInfos1[j] = temp;
                 }
