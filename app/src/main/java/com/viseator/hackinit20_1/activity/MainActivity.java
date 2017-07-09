@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ import java.util.Random;
 import java.util.logging.SimpleFormatter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
     public String ipAddress;
@@ -54,6 +56,10 @@ public class MainActivity extends BaseActivity {
     private View toolbar;
     @BindView(R.id.main_imageview)
     ImageView mImageView;
+    @BindView(R.id.child_status)
+    ImageView mImageView2;
+    @BindView(R.id.cardview)
+    CardView mCardView;
     private RelativeLayout behavior;
     private ImageView voiceView;
     private static final String TAG = "@vir MainActivity";
@@ -215,6 +221,7 @@ public class MainActivity extends BaseActivity {
         addFrames(mAnimationDrawable, 30);
         mImageView.setImageDrawable(mAnimationDrawable);
         mAnimationDrawable.start();
+
     }
 
     private void TcpInit() {
@@ -306,6 +313,13 @@ public class MainActivity extends BaseActivity {
         builder.setContentTitle(title).setContentText(message).setSmallIcon(R.mipmap.starticon);
         Notification notification = builder.build();
         manager.notify(101, notification);
+    }
+
+    @OnClick(R.id.child_status)
+    public void click() {
+        if (mCardView.getVisibility() == View.GONE) mCardView.setVisibility(View.VISIBLE);
+        else mCardView.setVisibility(View.GONE);
+
     }
 
 

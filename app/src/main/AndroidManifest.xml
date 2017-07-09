@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:theme="@style/WelcomeStyle"
+            android:name=".activity.WelcomeActivity" >
+
+        </activity>
         <activity android:name=".activity.MonitorGameActivity">
         </activity>
         <activity android:name=".activity.SettingActivity"/>
