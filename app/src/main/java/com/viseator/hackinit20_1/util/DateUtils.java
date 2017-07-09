@@ -52,8 +52,7 @@ public class DateUtils {
         return hour;
     }
 
-    public static String formatDate(long time) {
-        Date date = new Date(time);
+    public static String formatDate(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("MM:dd");
         return format.format(date);
     }

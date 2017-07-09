@@ -78,18 +78,14 @@ public class TodayDataFragment extends Fragment {
     }
 
     private void initData() {
-        for (int i = 0; i < 10; i++) {
 
-            GameDataEntity entity = new GameDataEntity(System.currentTimeMillis(), "打开王者荣耀", true);
-            mGamerecords.add(entity);
-        }
 
-//        mGamerecords = GameData.getInstance().getDataList();
-//        if (mGamerecords != null) {
-//            mGamerecords = DateUtils.sortGameInfo(mGamerecords);
+        mGamerecords = GameData.getInstance().getDataList();
+        if (mGamerecords != null) {
+            mGamerecords = DateUtils.sortGameInfo(mGamerecords);
             mGamerecordAdapter = new GamerecordAdapter(mActivity, mGamerecords);
             mRecyclerView.setAdapter(mGamerecordAdapter);
-//        }
+        }
     }
 
 }

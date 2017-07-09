@@ -1,6 +1,8 @@
 package com.viseator.hackinit20_1.activity;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -41,6 +44,7 @@ public class MainActivity extends BaseActivity {
     private GameData mGameData;
     private RelativeLayout record, input_text;
     private AnimationDrawable mAnimationDrawable;
+    private View toolbar;
     @BindView(R.id.main_imageview)
     ImageView mImageView;
     private RelativeLayout behavior;
@@ -134,6 +138,7 @@ public class MainActivity extends BaseActivity {
         record = (RelativeLayout) findViewById(R.id.monitor_game);
         behavior = (RelativeLayout) findViewById(R.id.monitor_behavior);
         input_text = (RelativeLayout) findViewById(R.id.input_text_layout);
+        toolbar = (View) findViewById(R.id.main_toolbar);
         voiceView = (ImageView) findViewById(R.id.input_voice);
         mAnimationDrawable = new AnimationDrawable();
         addFrames(mAnimationDrawable, 30);
@@ -169,19 +174,22 @@ public class MainActivity extends BaseActivity {
         input_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_record_voice, null);
-                Button send = (Button) view.findViewById(R.id.send_voice_btn);
+//                View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_record_voice, null);
+//                final Button send = (Button) view.findViewById(R.id.send_voice_btn);
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setView(view);
-                final Dialog dialog = builder.create();
-                dialog.show();
-                send.setOnClickListener(new View.OnClickListener() {
+                final EditText editText = new EditText(MainActivity.this);
+                builder.setView(editText).setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        sendMessage("请注意玩游戏时间哦");
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendMessage(editText.getText().toString());
                         dialog.dismiss();
                     }
-                });
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create().show();
 
             }
         });
@@ -191,6 +199,25 @@ public class MainActivity extends BaseActivity {
                 ActivityUtil.startActivity(MainActivity.this, MonitorBehaviorActivity.class);
             }
         });
+        toolbar.findViewById(R.id.pop_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.startActivity(MainActivity.this, SettingActivity.class);
+            }
+        });
+        toolbar.findViewById(R.id.pop_message).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.startActivity(MainActivity.this, ContactRecordActivity.class);
+            }
+        });
+        toolbar.findViewById(R.id.pop_notification).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.startActivity(MainActivity.this, RemindActivity.class);
+            }
+        });
+
     }
 
     private void sendMessage(String message) {
@@ -200,6 +227,16 @@ public class MainActivity extends BaseActivity {
         Gson gson = new Gson();
         String data = gson.toJson(dataBean, dataBean.getClass());
         mTcpClient.sendRequest(ipAddress, data);
+    }
+
+    private void sendNotification(String title, String message) {
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification.Builder builder = new Notification.Builder(getApplicationContext());
+        builder.setContentTitle(title).setContentText(message).setSmallIcon(R.mipmap.ic_launcher)
+                .setWhen(System.currentTimeMillis());
+        Notification notification = builder.build();
+        notification.flags = Notification.FLAG_AUTO_CANCEL;
+        manager.notify(101,notification);
     }
 
 
