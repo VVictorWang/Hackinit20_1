@@ -8,7 +8,7 @@
         android:id="@+id/blue_ball"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="4dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/blue_ball"
         />
@@ -38,7 +38,7 @@
         android:layout_marginLeft="10dp"
         android:id="@+id/game_info"
         android:textSize="18dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:text="打开阴阳师"/>
     <TextView
         android:layout_width="match_parent"

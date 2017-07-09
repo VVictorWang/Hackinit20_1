@@ -28,7 +28,6 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
         findViewById(R.id.back_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -26,7 +26,7 @@ public class DateUtils {
         gameInfos1 = gameInfos.toArray(gameInfos1);
         for (int i = 0; i < gameInfos.size(); i++) {
             for (int j = i + 1; j < gameInfos.size(); j++) {
-                if (gameInfos1[i].getTime() > gameInfos1[j].getTime()) {
+                if (gameInfos1[i].getTime() < gameInfos1[j].getTime()) {
                     GameDataEntity temp = gameInfos1[i];
                     gameInfos1[i] = gameInfos1[j];
                     gameInfos1[j] = temp;
