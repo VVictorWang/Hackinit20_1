@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
+import com.viseator.hackinit20_1.util.ActivityUtil;
 import com.viseator.hackinit20_1.util.ConvertData;
 import com.viseator.hackinit20_1.util.network.ComUtil;
 import com.viseator.hackinit20_1.util.network.GetNetworkInfo;
@@ -17,6 +20,7 @@ public class MainActivity extends BaseActivity {
     public String ipAddress;
     private TcpServer mTcpServer;
     private TcpClient mTcpClient;
+    private RelativeLayout record;
     private static final String TAG = "@vir MainActivity";
 
 
@@ -51,6 +55,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initEvent();
     }
 
     @Override
@@ -68,6 +73,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        record = (RelativeLayout) findViewById(R.id.monitor_game);
     }
 
     private void TcpInit() {
@@ -75,6 +81,15 @@ public class MainActivity extends BaseActivity {
         mTcpServer.startServer(mHandler);
         mTcpClient = new TcpClient();
         mTcpClient.sendRequest(ipAddress, "test");
+    }
+
+    private void initEvent() {
+        record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.startActivity(MainActivity.this, MonitorGameActivity.class);
+            }
+        });
     }
 
 }

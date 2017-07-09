@@ -8,6 +8,7 @@ import com.viseator.hackinit20_1.data.GameDataEntity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -47,5 +48,10 @@ public class DateUtils {
         SimpleDateFormat format = new SimpleDateFormat("hh:mm");
         String hour = format.format(date);
         return hour;
+    }
+
+    public static int sumEveryDay(List<GameDataEntity> gameDataEntities, Date date) {
+
+        return 0;
     }
 }

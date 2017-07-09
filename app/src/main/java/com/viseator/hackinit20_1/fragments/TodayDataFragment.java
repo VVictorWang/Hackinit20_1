@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.adapters.GamerecordAdapter;
 import com.viseator.hackinit20_1.data.DataBean;
+import com.viseator.hackinit20_1.data.GameData;
 import com.viseator.hackinit20_1.data.GameDataEntity;
 import com.viseator.hackinit20_1.util.DateUtils;
 
@@ -85,9 +86,13 @@ public class TodayDataFragment extends Fragment {
     }
 
     private void initData() {
-        mGamerecords = DateUtils.sortGameInfo(mGamerecords);
-        mGamerecordAdapter = new GamerecordAdapter(mActivity, mGamerecords);
-        mRecyclerView.setAdapter(mGamerecordAdapter);
+
+        mGamerecords = GameData.getInstance().getDataList();
+        if (mGamerecords != null) {
+            mGamerecords = DateUtils.sortGameInfo(mGamerecords);
+            mGamerecordAdapter = new GamerecordAdapter(mActivity, mGamerecords);
+            mRecyclerView.setAdapter(mGamerecordAdapter);
+        }
     }
 
 }
