@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.adapters.ExcelAdapter;
 import com.viseator.hackinit20_1.data.DataBean;
+import com.viseator.hackinit20_1.data.DataCount;
 import com.viseator.hackinit20_1.data.GameData;
 import com.viseator.hackinit20_1.data.GameDataEntity;
 
@@ -32,7 +33,7 @@ public class ThisWeekFragment extends Fragment {
     private ExcelAdapter weekday_adapter;
     private View rootView;
 
-    private List<GameDataEntity> mGameDataEntities = new ArrayList<>();
+    private List<DataCount> mDataCounts = new ArrayList<>();
 
     public ThisWeekFragment() {
         // Required empty public constructor
@@ -70,7 +71,7 @@ public class ThisWeekFragment extends Fragment {
         initData();
 
         weekday_list = (RecyclerView) rootView.findViewById(R.id.hour_list_week);
-        weekday_adapter = new ExcelAdapter(getActivity(),mGameDataEntities);
+        weekday_adapter = new ExcelAdapter(getActivity(), mDataCounts);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         weekday_list.setLayoutManager(linearLayoutManager);
@@ -80,7 +81,7 @@ public class ThisWeekFragment extends Fragment {
 
     private void initData() {
         Calendar calendar = Calendar.getInstance();
-        for (int i = 0; i < 7; calendar.add(Calendar.DATE, - 1)) {
+        for (int i = 0; i < 7; calendar.add(Calendar.DATE, -1),i++) {
             Date date = calendar.getTime();
             List<GameDataEntity> gameDataEntities = GameData.getInstance().getDataByDay(date);
             int time = 0;
@@ -96,18 +97,15 @@ public class ThisWeekFragment extends Fragment {
                 oldentity = entity;
                 oldname = name;
             }
-            GameDataEntity gameDataEntity = new GameDataEntity();
-            gameDataEntity.setTime(date.getTime());
-            gameDataEntity.setRuntime(time);
-            mGameDataEntities.add(gameDataEntity);
+            DataCount dataCount = new DataCount();
+            dataCount.setDate(date);
+            dataCount.setRuntime(time);
+            mDataCounts.add(dataCount);
 
         }
 
 
     }
-
-
-
 
 
 }
