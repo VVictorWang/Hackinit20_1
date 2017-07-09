@@ -20,7 +20,6 @@ import java.util.List;
 public class RemindActivity extends BaseActivity {
 
     private RecyclerView mRecyclerView;
-    private SideView mSideView;
     private List<GameDataEntity> mGameDataEntities = new ArrayList<>();
 
 
@@ -43,13 +42,12 @@ public class RemindActivity extends BaseActivity {
     protected void initView() {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.remind_list);
-        mSideView = (SideView) findViewById(R.id.side_view);
-        String[] sidebardata = new String[10];
+//        mSideView = (SideView) findViewById(R.id.side_view);
         for (int i = 0; i < 10; i++) {
             mGameDataEntities.add(new GameDataEntity(System.currentTimeMillis(), "走出家门", true));
-            sidebardata[i] = DateUtils.getWeekbyTime(System.currentTimeMillis()).charAt(0)+"";
+//            sidebardata[i] = DateUtils.getWeekbyTime(System.currentTimeMillis()).charAt(0)+"";
         }
-        mSideView.setData(sidebardata);
+//        mSideView.setData(sidebardata);
         GamerecordAdapter adapter = new GamerecordAdapter(RemindActivity.this,mGameDataEntities);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(RemindActivity.this);
         mRecyclerView.setLayoutManager(linearLayoutManager);

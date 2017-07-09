@@ -39,12 +39,12 @@
 
     </RelativeLayout>
 
-    <com.viseator.hackinit20_1.view.SideView
-        android:id="@+id/side_view"
-        android:layout_width="30dp"
-        android:layout_below="@+id/remind_toolbar"
-        android:layout_height="match_parent"
-        />
+    <!--<com.viseator.hackinit20_1.view.SideView-->
+        <!--android:id="@+id/side_view"-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_below="@+id/remind_toolbar"-->
+        <!--android:layout_height="match_parent"-->
+        <!--/>-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/remind_list"
@@ -53,7 +53,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/remind_toolbar"
-        android:layout_toRightOf="@+id/side_view"
 
         />
 

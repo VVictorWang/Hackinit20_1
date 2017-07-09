@@ -179,7 +179,14 @@ public class MainActivity extends BaseActivity {
                 Button send = (Button) view.findViewById(R.id.send_voice_btn);
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setView(view);
-                builder.create().show();
+                final Dialog dialog = builder.create();
+                dialog.show();
+                send.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
 
             }
         });
