@@ -35,8 +35,12 @@ import com.viseator.hackinit20_1.util.network.GetNetworkInfo;
 import com.viseator.hackinit20_1.util.network.TcpClient;
 import com.viseator.hackinit20_1.util.network.TcpServer;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.SimpleFormatter;
 
 import butterknife.BindView;
 
@@ -75,9 +79,23 @@ public class MainActivity extends BaseActivity {
                         DataBean result = gson.fromJson((String) msg.obj, DataBean.class);
                         switch (result.getCode()) {
                             case 1:
+                                StringBuilder sb = new StringBuilder();
+                                Date date = new Date(result.getTime());
+                                sb.append("您的孩子于");
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                                sb.append(simpleDateFormat.format(date));
+                                if (result.isIsOpen()) {
+                                    sb.append("打开");
+                                } else {
+                                    sb.append("关闭");
+                                }
+                                sb.append("了");
+                                sb.append(result.getName());
+                                sendNotification("孩子动态", sb.toString());
                                 saveDataToDataBase(result);
                                 break;
                             case 2:
+
                                 showDialog(result.getMessage());
                                 break;
 
@@ -286,11 +304,9 @@ public class MainActivity extends BaseActivity {
     private void sendNotification(String title, String message) {
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Notification.Builder builder = new Notification.Builder(getApplicationContext());
-        builder.setContentTitle(title).setContentText(message).setSmallIcon(R.mipmap.ic_launcher)
-                .setWhen(System.currentTimeMillis());
+        builder.setContentTitle(title).setContentText(message).setSmallIcon(R.mipmap.starticon);
         Notification notification = builder.build();
-        notification.flags = Notification.FLAG_AUTO_CANCEL;
-        manager.notify(101,notification);
+        manager.notify(101, notification);
     }
 
 
