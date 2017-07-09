@@ -45,6 +45,7 @@ public class DateUtils {
         String week = format.format(date);
         return week;
     }
+
     public static String getHourbyTime(long time) {
         Date date = new Date(time);
         SimpleDateFormat format = new SimpleDateFormat("hh:mm");
@@ -52,14 +53,58 @@ public class DateUtils {
         return hour;
     }
 
-    public static String formatDate(long time) {
-        Date date = new Date(time);
+    public static String formatDate(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("MM:dd");
         return format.format(date);
     }
 
-    public static int sumEveryDay(List<GameDataEntity> gameDataEntities, Date date) {
+    public static int sumEveryDay(List<GameDataEntity> gameDataEntities) {
+        int time = 0;
 
-        return 0;
+        HashMap<String, TempData> infos = new HashMap<>();
+        for (GameDataEntity entity : gameDataEntities) {
+            if (infos.get(entity.getName()) == null) {
+                TempData tempData = new TempData();
+                tempData.setTime(entity.getTime());
+                tempData.setIsopen(entity.getIsOpen());
+                infos.put(entity.getName(), tempData);
+            } else {
+                TempData tempData = infos.get(entity.getName());
+                if (tempData.isopen() != entity.getIsOpen()) {
+                    time += Math.abs(entity.getTime() - tempData.getTime());
+                }
+            }
+        }
+        return time;
+
+    }
+
+    public static String timetoMinute(long time) {
+        time /= 1000;
+        int mint = (int) (time % 3600) / 60;
+        String mintStr = String.valueOf(mint);
+        mintStr = "0" + mintStr + "分钟";
+        return mintStr;
+    }
+
+    static class TempData {
+        private boolean isopen;
+        private long time;
+
+        public boolean isopen() {
+            return isopen;
+        }
+
+        public void setIsopen(boolean isopen) {
+            this.isopen = isopen;
+        }
+
+        public long getTime() {
+            return time;
+        }
+
+        public void setTime(long time) {
+            this.time = time;
+        }
     }
 }

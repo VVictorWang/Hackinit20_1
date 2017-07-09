@@ -18,6 +18,8 @@ import com.viseator.hackinit20_1.data.GameDataEntity;
 import com.viseator.hackinit20_1.util.DateUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -78,18 +80,22 @@ public class TodayDataFragment extends Fragment {
     }
 
     private void initData() {
-        for (int i = 0; i < 10; i++) {
 
-            GameDataEntity entity = new GameDataEntity(System.currentTimeMillis(), "打开王者荣耀", true);
-            mGamerecords.add(entity);
-        }
 
-//        mGamerecords = GameData.getInstance().getDataList();
-//        if (mGamerecords != null) {
-//            mGamerecords = DateUtils.sortGameInfo(mGamerecords);
+        mGamerecords = GameData.getInstance().getDataList();
+        if (mGamerecords != null) {
+            mGamerecords = DateUtils.sortGameInfo(mGamerecords);
             mGamerecordAdapter = new GamerecordAdapter(mActivity, mGamerecords);
             mRecyclerView.setAdapter(mGamerecordAdapter);
-//        }
+        }
+        total.setText("今日游戏时长：             " + DateUtils.timetoMinute(getTotalTime()));
+    }
+
+    private int getTotalTime() {
+        Date date = new Date(System.currentTimeMillis());
+        List<GameDataEntity> gameDataEntities = GameData.getInstance().getDataByDay(date);
+        return DateUtils.sumEveryDay(gameDataEntities);
+
     }
 
 }

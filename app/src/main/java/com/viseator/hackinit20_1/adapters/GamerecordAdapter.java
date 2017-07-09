@@ -28,10 +28,12 @@ public class GamerecordAdapter extends RecyclerView.Adapter<GamerecordAdapter.My
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView time;
         private TextView event;
+        private TextView date;
         public MyViewHolder(View itemView) {
             super(itemView);
             time = (TextView) itemView.findViewById(R.id.time_text);
             event = (TextView) itemView.findViewById(R.id.game_info);
+            date = (TextView) itemView.findViewById(R.id.date_normal);
         }
     }
 
@@ -54,11 +56,19 @@ public class GamerecordAdapter extends RecyclerView.Adapter<GamerecordAdapter.My
         String week = getDayForSection(position);
         final GameDataEntity gameinfo = mGameInfos.get(position);
         if (position == getPositionForSection(week)) {
-            holder.time.setText(week);
-            holder.event.setText("");
+            holder.time.setVisibility(View.INVISIBLE);
+            holder.event.setVisibility(View.INVISIBLE);
+            holder.date.setVisibility(View.VISIBLE);
+            holder.date.setText(week);
         } else {
+            holder.time.setVisibility(View.VISIBLE);
+            holder.event.setVisibility(View.VISIBLE);
+            holder.date.setVisibility(View.INVISIBLE);
             holder.time.setText(DateUtils.getHourbyTime(gameinfo.getTime()));
-            holder.event.setText(gameinfo.getName());
+            if (gameinfo.getIsOpen()) {
+                holder.event.setText("打开" + gameinfo.getName());
+            }else
+                holder.event.setText("关闭" + gameinfo.getName());
         }
     }
 

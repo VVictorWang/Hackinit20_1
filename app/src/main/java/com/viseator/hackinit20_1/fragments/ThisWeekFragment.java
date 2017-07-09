@@ -16,6 +16,7 @@ import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.data.DataCount;
 import com.viseator.hackinit20_1.data.GameData;
 import com.viseator.hackinit20_1.data.GameDataEntity;
+import com.viseator.hackinit20_1.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,7 +30,7 @@ public class ThisWeekFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-    private RecyclerView weekday_list,game_list;
+    private RecyclerView weekday_list, game_list;
     private ExcelAdapter weekday_adapter;
     private View rootView;
 
@@ -84,27 +85,13 @@ public class ThisWeekFragment extends Fragment {
         for (int i = 0; i < 7; calendar.add(Calendar.DATE, -1),i++) {
             Date date = calendar.getTime();
             List<GameDataEntity> gameDataEntities = GameData.getInstance().getDataByDay(date);
-            int time = 0;
-            String name=null, oldname=null;
-            GameDataEntity oldentity = new GameDataEntity();
-            for (GameDataEntity entity : gameDataEntities) {
-                name = entity.getName();
-                if (oldname == null) {
-                    continue;
-                } else if (oldname.equals(name)) {
-                    time += Math.abs(oldentity.getTime() - entity.getTime());
-                }
-                oldentity = entity;
-                oldname = name;
-            }
+            int time = DateUtils.sumEveryDay(gameDataEntities);
             DataCount dataCount = new DataCount();
             dataCount.setDate(date);
             dataCount.setRuntime(time);
             mDataCounts.add(dataCount);
 
         }
-
-
     }
 
 

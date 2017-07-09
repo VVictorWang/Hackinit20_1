@@ -41,6 +41,10 @@ public class GameData {
         mGameDataEntityDao.insert(gameDataEntity);
     }
 
+    public void delAll() {
+        mGameDataEntityDao.deleteAll();
+    }
+
     public List<GameDataEntity> getDataList() {
         return mGameDataEntityDao.queryBuilder().list();
     }
