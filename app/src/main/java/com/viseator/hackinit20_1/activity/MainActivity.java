@@ -1,13 +1,18 @@
 package com.viseator.hackinit20_1.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -149,10 +154,12 @@ public class MainActivity extends BaseActivity {
         input_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                RecordFragment recordFragment = new RecordFragment();
-                transaction.replace(R.id.relative_layout, recordFragment);
-                transaction.commit();
+                View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_record_voice, null);
+                Button send = (Button) view.findViewById(R.id.send_voice_btn);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setView(view);
+                builder.create().show();
+
             }
         });
         behavior.setOnClickListener(new View.OnClickListener() {
