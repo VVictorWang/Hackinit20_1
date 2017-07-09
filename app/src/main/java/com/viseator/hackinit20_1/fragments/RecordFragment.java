@@ -45,13 +45,7 @@ public class RecordFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         rootView = mActivity.getLayoutInflater().inflate(R.layout.fragment_record_voice, null);
         mEditText = (EditText) rootView.findViewById(R.id.edit_text_voice);
-        record = (ImageView) rootView.findViewById(R.id.record_image_view);
-        record.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         builder.setView(rootView);
         return builder.create();
     }

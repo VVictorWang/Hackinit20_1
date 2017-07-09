@@ -4,23 +4,19 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.viseator.hackinit20_1.BaseActivity;
@@ -28,7 +24,6 @@ import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.data.GameData;
 import com.viseator.hackinit20_1.data.GameDataEntity;
-import com.viseator.hackinit20_1.fragments.RecordFragment;
 import com.viseator.hackinit20_1.util.ActivityUtil;
 import com.viseator.hackinit20_1.util.ConvertData;
 import com.viseator.hackinit20_1.util.network.ComUtil;
@@ -38,10 +33,7 @@ import com.viseator.hackinit20_1.util.network.TcpServer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Formatter;
-import java.util.List;
 import java.util.Random;
-import java.util.logging.SimpleFormatter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -101,7 +93,6 @@ public class MainActivity extends BaseActivity {
                                 saveDataToDataBase(result);
                                 break;
                             case 2:
-
                                 showDialog(result.getMessage());
                                 break;
 
@@ -128,28 +119,72 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showDialog(String message) {
-        AlertDialog dialog = new AlertDialog.Builder(this).setCustomTitle(null).setMessage
-                (message).setPositiveButton("回复", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                final EditText editText = new EditText(MainActivity.this);
-                builder.setView(editText).setPositiveButton("发送", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sendMessage(editText.getText().toString());
-                        dialog.dismiss();
-                    }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create().show();
-
-            }
-        }).setNegativeButton("取消", null).create();
+        View view = getLayoutInflater().inflate(R.layout.fragment_record_voice, null);
+        Button positive = (Button) view.findViewById(R.id.send_voice_btn);
+        Button negetive = (Button) view.findViewById(R.id.negtive_btn);
+        TextView textView = (TextView) view.findViewById(R.id.receive_message);
+        final EditText editText = (EditText) view.findViewById(R.id.edit_text_voice);
+        editText.setVisibility(View.INVISIBLE);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(message);
+        positive.setText("回复");
+        final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).setView(view).create();
         dialog.show();
+        positive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                View view = getLayoutInflater().inflate(R.layout.fragment_record_voice, null);
+                Button positive = (Button) view.findViewById(R.id.send_voice_btn);
+                Button negetive = (Button) view.findViewById(R.id.negtive_btn);
+                TextView textView = (TextView) view.findViewById(R.id.receive_message);
+                final EditText editText = (EditText) view.findViewById(R.id.edit_text_voice);
+                final AlertDialog dialog1 = new AlertDialog.Builder(MainActivity.this).setView(view).create();
+                textView.setVisibility(View.INVISIBLE);
+                dialog1.show();
+                positive.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sendMessage(editText.getText().toString());
+                        dialog1.dismiss();
+                    }
+                });
+                negetive.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog1.dismiss();
+                    }
+                });
+            }
+        });
+        negetive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+//        AlertDialog dialog = new AlertDialog.Builder(this).setCustomTitle(null).setMessage
+//                (message).setPositiveButton("回复", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                final EditText editText = new EditText(MainActivity.this);
+//                builder.setView(editText).setPositiveButton("发送", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        sendMessage(editText.getText().toString());
+//                        dialog.dismiss();
+//                    }
+//                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                }).create().show();
+//
+//            }
+//        }).setNegativeButton("取消", null).create();
+//        dialog.show();
     }
 
     private Handler handler = new Handler();
@@ -254,20 +289,28 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
 //                View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_record_voice, null);
 //                final Button send = (Button) view.findViewById(R.id.send_voice_btn);
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                final EditText editText = new EditText(MainActivity.this);
-                builder.setView(editText).setPositiveButton("发送", new DialogInterface.OnClickListener() {
+                View view = getLayoutInflater().inflate(R.layout.fragment_record_voice, null);
+                Button positive = (Button) view.findViewById(R.id.send_voice_btn);
+                Button negetive = (Button) view.findViewById(R.id.negtive_btn);
+                TextView textView = (TextView) view.findViewById(R.id.receive_message);
+                final EditText editText = (EditText) view.findViewById(R.id.edit_text_voice);
+                final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).setView(view).create();
+                textView.setVisibility(View.INVISIBLE);
+                dialog.show();
+                positive.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
                         sendMessage(editText.getText().toString());
                         dialog.dismiss();
                     }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                });
+                negetive.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
                         dialog.dismiss();
                     }
-                }).create().show();
+                });
+
 
             }
         });
