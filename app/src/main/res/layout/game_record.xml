@@ -17,6 +17,7 @@
         android:id="@+id/time_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/blue_ball"
         android:text="11:22"
@@ -34,8 +35,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/time_text"
         android:layout_toRightOf="@+id/blue_ball"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/game_info"
-        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:layout_marginTop="5dp"
         android:text="打开阴阳师"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_normal"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        />
 </RelativeLayout>

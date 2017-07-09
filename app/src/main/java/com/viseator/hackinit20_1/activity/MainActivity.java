@@ -201,7 +201,6 @@ public class MainActivity extends BaseActivity {
             mGameData.addGameData(gameDataEntity.getName(), gameDataEntity.getTime(),
                     gameDataEntity.getIsOpen());
         }
-        List<GameDataEntity> list = mGameData.getDataList();
 
     }
 

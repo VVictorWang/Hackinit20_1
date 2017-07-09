@@ -18,6 +18,8 @@ import com.viseator.hackinit20_1.data.GameDataEntity;
 import com.viseator.hackinit20_1.util.DateUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -86,6 +88,14 @@ public class TodayDataFragment extends Fragment {
             mGamerecordAdapter = new GamerecordAdapter(mActivity, mGamerecords);
             mRecyclerView.setAdapter(mGamerecordAdapter);
         }
+        total.setText("今日游戏时长：             " + DateUtils.timetoMinute(getTotalTime()));
+    }
+
+    private int getTotalTime() {
+        Date date = new Date(System.currentTimeMillis());
+        List<GameDataEntity> gameDataEntities = GameData.getInstance().getDataByDay(date);
+        return DateUtils.sumEveryDay(gameDataEntities);
+
     }
 
 }

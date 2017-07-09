@@ -14,7 +14,6 @@ public class ContactRecordActivity extends BaseActivity {
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
     }
-
     @Override
     protected int getLayout() {
         return R.layout.activity_contact_record;
