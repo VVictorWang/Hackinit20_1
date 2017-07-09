@@ -16,7 +16,7 @@
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
-        android:text="本周游戏时长： 8h"
+        android:text="本周游戏时长：        7h"
         />
 
     <android.support.v7.widget.RecyclerView
@@ -44,13 +44,15 @@
             android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
             android:text="本周游戏记录"
+            android:paddingBottom="5dp"
+            android:background="@color/white"
             />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/game_record_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="35dp"
             />
     </RelativeLayout>
 </RelativeLayout>

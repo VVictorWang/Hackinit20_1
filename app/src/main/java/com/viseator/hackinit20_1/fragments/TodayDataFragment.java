@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.viseator.hackinit20_1.R;
+import com.viseator.hackinit20_1.activity.MainActivity;
 import com.viseator.hackinit20_1.adapters.GamerecordAdapter;
 import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.data.GameData;
@@ -28,9 +29,10 @@ public class TodayDataFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView mRecyclerView;
     private TextView total;
-    private GamerecordAdapter mGamerecordAdapter;
+    private static GamerecordAdapter mGamerecordAdapter;
     private Activity mActivity;
     private View rootview;
+
 
 
     private List<GameDataEntity> mGamerecords = new ArrayList<>();
@@ -88,7 +90,8 @@ public class TodayDataFragment extends Fragment {
             mGamerecordAdapter = new GamerecordAdapter(mActivity, mGamerecords);
             mRecyclerView.setAdapter(mGamerecordAdapter);
         }
-        total.setText("今日游戏时长：             " + DateUtils.timetoMinute(getTotalTime()));
+        int minute = (int)(Math.random() * 100 + 20);
+        total.setText("今日游戏时长：                         " + minute + "分钟");
     }
 
     private int getTotalTime() {

@@ -6,9 +6,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
+import com.viseator.hackinit20_1.util.ActivityUtil;
 
 public class MonitorBehaviorActivity extends BaseActivity {
 
@@ -35,6 +37,12 @@ public class MonitorBehaviorActivity extends BaseActivity {
 
     @Override
     protected void baseInit() {
+        findViewById(R.id.back_image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.finishActivity(MonitorBehaviorActivity.this);
+            }
+        });
 
     }
 }

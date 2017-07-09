@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.adapters.ExcelAdapter;
+import com.viseator.hackinit20_1.adapters.GamerecordAdapter;
 import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.data.DataCount;
 import com.viseator.hackinit20_1.data.GameData;
@@ -32,6 +33,8 @@ public class ThisWeekFragment extends Fragment {
     private String mParam2;
     private RecyclerView weekday_list, game_list;
     private ExcelAdapter weekday_adapter;
+    private GamerecordAdapter mGamerecordAdapter;
+    private List<GameDataEntity> mGameDataEntities = new ArrayList<>();
     private View rootView;
 
     private List<DataCount> mDataCounts = new ArrayList<>();
@@ -72,11 +75,16 @@ public class ThisWeekFragment extends Fragment {
         initData();
 
         weekday_list = (RecyclerView) rootView.findViewById(R.id.hour_list_week);
+        game_list = (RecyclerView) rootView.findViewById(R.id.game_record_list);
         weekday_adapter = new ExcelAdapter(getActivity(), mDataCounts);
+        mGamerecordAdapter = new GamerecordAdapter(getActivity(), mGameDataEntities);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         weekday_list.setLayoutManager(linearLayoutManager);
         weekday_list.setAdapter(weekday_adapter);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity());
+        game_list.setAdapter(mGamerecordAdapter);
+        game_list.setLayoutManager(linearLayoutManager1);
 
     }
 
@@ -92,6 +100,7 @@ public class ThisWeekFragment extends Fragment {
             mDataCounts.add(dataCount);
 
         }
+        mGameDataEntities = GameData.getInstance().getDataList();
     }
 
 

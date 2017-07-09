@@ -54,7 +54,7 @@ public class DateUtils {
     }
 
     public static String formatDate(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat("MM:dd");
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd");
         return format.format(date);
     }
 

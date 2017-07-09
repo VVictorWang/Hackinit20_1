@@ -1,11 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="@color/background"
-                tools:context="com.viseator.hackinit20_1.fragments.TodayDataFragment">
-
+                tools:context="com.viseator.hackinit20_1.fragments.MonthFragment">
 
     <TextView
         android:id="@+id/game_hour_all_month"
@@ -13,44 +12,39 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/white"
+        android:text="本月游戏记录:         34h"
         android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
         android:paddingTop="5dp"
-        android:text="本月游戏时长： 8h"
+        android:paddingLeft="10dp"
         />
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/hour_list_month"
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/carlendar_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="310dp"
         android:layout_below="@+id/game_hour_all_month"
         android:layout_marginTop="10dp"
-        android:paddingTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/game_record_month"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/carlendar_view"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="本月游戏记录"
+        android:paddingTop="10dp"
         android:paddingBottom="5dp"
         android:background="@color/white"
         />
 
-    <RelativeLayout
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/record_list_month"
         android:layout_width="match_parent"
+        android:layout_below="@+id/game_record_month"
         android:layout_height="wrap_content"
-        android:layout_below="@id/hour_list_month"
-        android:layout_marginTop="25dp"
-        android:background="@color/white">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="10dp"
-            android:text="本月游戏记录"
-            />
-
-        <android.support.v7.widget.RecyclerView
-            android:background="@color/white"
-            android:id="@+id/game_record_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="25dp"/>
-    </RelativeLayout>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
 </RelativeLayout>

@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:background="@color/colorPrimaryDark"
         android:layout_height="wrap_content"
-        >
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/back_image"
