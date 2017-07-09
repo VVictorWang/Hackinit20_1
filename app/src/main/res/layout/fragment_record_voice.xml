@@ -3,7 +3,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="150dp"
-                android:background="@color/background"
+                android:background="@color/record_back"
                 android:orientation="vertical">
 
     <ImageView
@@ -16,49 +16,50 @@
         />
 
     <android.support.v7.widget.CardView
+        android:id="@+id/card_edit_text"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:id="@+id/card_edit_text"
         android:layout_below="@+id/record_image"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
         >
 
         <EditText
+            android:id="@+id/edit_text_voice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/edit_text_voice"
             />
     </android.support.v7.widget.CardView>
 
     <Button
+        android:id="@+id/peoview_btn"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_below="@+id/card_edit_text"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="预览"
-        android:id="@+id/peoview_btn"
 
         />
+
     <Button
+        android:id="@+id/send_voice_btn"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/card_edit_text"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/card_edit_text"
         android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
         android:text="发送"
-        android:id="@+id/send_voice_btn"
         />
 
     <ImageView
+        android:id="@+id/record_image_view"
         android:layout_width="380dp"
         android:layout_height="50dp"
-        android:src="@mipmap/ic_launcher"
         android:layout_below="@+id/send_voice_btn"
-        android:id="@+id/record_image_view"
+        android:src="@mipmap/ic_launcher"
         />
 </RelativeLayout>
