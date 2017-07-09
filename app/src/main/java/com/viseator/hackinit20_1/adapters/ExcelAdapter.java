@@ -8,7 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.viseator.hackinit20_1.R;
+import com.viseator.hackinit20_1.data.GameDataEntity;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,11 +21,14 @@ import java.util.List;
  * blog: www.victorwang.science                                            #
  */
 
-public class ExcelAdapter extends RecyclerView.Adapter<ExcelAdapter.MyViewHolder>{
+public class ExcelAdapter extends RecyclerView.Adapter<ExcelAdapter.MyViewHolder> {
     private Context mContext;
+    private HashMap<Date, Integer> infor = new HashMap<>();
+
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView day;
         private TextView hour;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             day = (TextView) itemView.findViewById(R.id.date_text);
@@ -31,6 +38,11 @@ public class ExcelAdapter extends RecyclerView.Adapter<ExcelAdapter.MyViewHolder
 
     public ExcelAdapter(Context context) {
         mContext = context;
+    }
+
+    public ExcelAdapter(Context context, HashMap<Date, Integer> infor) {
+        mContext = context;
+        this.infor = infor;
     }
 
     @Override

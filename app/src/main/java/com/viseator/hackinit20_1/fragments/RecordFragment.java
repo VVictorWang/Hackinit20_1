@@ -23,7 +23,7 @@ import com.viseator.hackinit20_1.R;
  * blog: www.victorwang.science                                            #
  */
 
-public class RecordFragment extends Fragment {
+public class RecordFragment extends DialogFragment {
     private Activity mActivity;
     private EditText mEditText;
     private ImageView record;
@@ -37,10 +37,13 @@ public class RecordFragment extends Fragment {
     public RecordFragment() {
     }
 
-    @Nullable
+
+    @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_record_voice, container, false);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        rootView = mActivity.getLayoutInflater().inflate(R.layout.fragment_record_voice, null);
         mEditText = (EditText) rootView.findViewById(R.id.edit_text_voice);
         record = (ImageView) rootView.findViewById(R.id.record_image_view);
         record.setOnClickListener(new View.OnClickListener() {
@@ -49,8 +52,7 @@ public class RecordFragment extends Fragment {
 
             }
         });
-        return rootView;
+        builder.setView(rootView);
+        return builder.create();
     }
-
-
 }

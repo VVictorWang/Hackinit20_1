@@ -50,6 +50,11 @@ public class DateUtils {
         return hour;
     }
 
+    public static String formatDate(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("MM:dd");
+        return format.format(date);
+    }
+
     public static int sumEveryDay(List<GameDataEntity> gameDataEntities, Date date) {
 
         return 0;
