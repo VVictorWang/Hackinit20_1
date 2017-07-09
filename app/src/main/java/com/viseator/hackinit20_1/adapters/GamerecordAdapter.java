@@ -30,8 +30,8 @@ public class GamerecordAdapter extends RecyclerView.Adapter<GamerecordAdapter.My
         private TextView event;
         public MyViewHolder(View itemView) {
             super(itemView);
-            time = (TextView) itemView.findViewById(R.id.gamerecord_time);
-            event = (TextView) itemView.findViewById(R.id.gamerecord_event);
+            time = (TextView) itemView.findViewById(R.id.time_text);
+            event = (TextView) itemView.findViewById(R.id.game_info);
         }
     }
 
@@ -46,7 +46,7 @@ public class GamerecordAdapter extends RecyclerView.Adapter<GamerecordAdapter.My
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.gamerecord_list, parent, false));
+        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.game_record, parent, false));
     }
 
     @Override

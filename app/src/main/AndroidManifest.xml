@@ -27,6 +27,8 @@
         </activity>
         <activity android:name=".activity.ContactRecordActivity">
         </activity>
+        <activity android:name=".activity.MonitorBehaviorActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
                 android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/monitor_game_toolbar"
+        android:id="@+id/monitor_behavior_toolbar"
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:text="手游监护"
+            android:text="行为监控"
             android:textSize="18dp"
             />
 
@@ -36,17 +36,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/monitor_game_toolbar"
+        android:layout_below="@+id/monitor_behavior_toolbar"
         android:orientation="vertical"
         >
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/monitor_tab"
+            android:id="@+id/behavior_tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/monitor_viewpager"
+            android:id="@+id/behavior_viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

@@ -3,6 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/background"
                 tools:context="com.viseator.hackinit20_1.fragments.TodayDataFragment">
 
 
@@ -11,25 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         android:text="今日游戏时长: "
         />
 
-    <TextView
-        android:id="@+id/game_hour_record"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/game_hour_all"
+        android:background="@color/white"
         android:layout_marginTop="10dp"
-        android:text="今日游戏记录: "
-        />
+
+        >
+
+        <TextView
+            android:id="@+id/game_hour_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="今日游戏记录                            2017.07.09  周日"
+            />
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/game_record_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/game_hour_record"
-        android:layout_marginTop="10dp"
-        />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/game_record_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/game_hour_record"
+            android:layout_marginTop="10dp"
+            />
+    </RelativeLayout>
+
 
 </RelativeLayout>
