@@ -15,7 +15,7 @@ public class GameDataEntity {
     long time;
     String name;
     boolean isOpen;
-    @Generated(hash = 1267141990)
+    @Generated(hash = 1446440934)
     public GameDataEntity(long time, String name, boolean isOpen) {
         this.time = time;
         this.name = name;
@@ -24,6 +24,15 @@ public class GameDataEntity {
     @Generated(hash = 588054022)
     public GameDataEntity() {
     }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
+
     public long getTime() {
         return this.time;
     }

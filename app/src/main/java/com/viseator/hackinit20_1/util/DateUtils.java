@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.R.attr.format;
+
 /**
  * Created by victor on 7/9/17.
  * email: chengyiwang@hustunique.com
@@ -50,7 +52,8 @@ public class DateUtils {
         return hour;
     }
 
-    public static String formatDate(Date date) {
+    public static String formatDate(long time) {
+        Date date = new Date(time);
         SimpleDateFormat format = new SimpleDateFormat("MM:dd");
         return format.format(date);
     }

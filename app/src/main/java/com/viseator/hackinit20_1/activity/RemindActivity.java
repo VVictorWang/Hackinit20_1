@@ -44,7 +44,11 @@ public class RemindActivity extends BaseActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.remind_list);
 //        mSideView = (SideView) findViewById(R.id.side_view);
         for (int i = 0; i < 10; i++) {
-            mGameDataEntities.add(new GameDataEntity(System.currentTimeMillis(), "走出家门", true));
+            GameDataEntity entity = new GameDataEntity();
+            entity.setTime(System.currentTimeMillis());
+            entity.setName("走出家门");
+            entity.setOpen(true);
+            mGameDataEntities.add(entity);
 //            sidebardata[i] = DateUtils.getWeekbyTime(System.currentTimeMillis()).charAt(0)+"";
         }
 //        mSideView.setData(sidebardata);

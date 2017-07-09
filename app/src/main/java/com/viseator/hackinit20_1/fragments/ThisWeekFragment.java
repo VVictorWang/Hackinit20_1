@@ -16,6 +16,7 @@ import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.data.GameData;
 import com.viseator.hackinit20_1.data.GameDataEntity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,8 +31,8 @@ public class ThisWeekFragment extends Fragment {
     private RecyclerView weekday_list,game_list;
     private ExcelAdapter weekday_adapter;
     private View rootView;
-    private HashMap<Date,Integer> week_games = new HashMap<>();
 
+    private List<GameDataEntity> mGameDataEntities = new ArrayList<>();
 
     public ThisWeekFragment() {
         // Required empty public constructor
@@ -66,10 +67,10 @@ public class ThisWeekFragment extends Fragment {
     }
 
     private void initView() {
-        initView();
+        initData();
 
         weekday_list = (RecyclerView) rootView.findViewById(R.id.hour_list_week);
-        weekday_adapter = new ExcelAdapter(getActivity());
+        weekday_adapter = new ExcelAdapter(getActivity(),mGameDataEntities);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         weekday_list.setLayoutManager(linearLayoutManager);
@@ -95,7 +96,10 @@ public class ThisWeekFragment extends Fragment {
                 oldentity = entity;
                 oldname = name;
             }
-            week_games.put(date, time);
+            GameDataEntity gameDataEntity = new GameDataEntity();
+            gameDataEntity.setTime(date.getTime());
+            gameDataEntity.setRuntime(time);
+            mGameDataEntities.add(gameDataEntity);
 
         }
 
