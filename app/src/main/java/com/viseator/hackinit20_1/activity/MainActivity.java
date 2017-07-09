@@ -3,8 +3,10 @@ package com.viseator.hackinit20_1.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
@@ -12,6 +14,7 @@ import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.data.DataBean;
 import com.viseator.hackinit20_1.data.GameData;
+import com.viseator.hackinit20_1.fragments.RecordFragment;
 import com.viseator.hackinit20_1.util.ActivityUtil;
 import com.viseator.hackinit20_1.util.ConvertData;
 import com.viseator.hackinit20_1.util.network.ComUtil;
@@ -25,9 +28,8 @@ public class MainActivity extends BaseActivity {
     private TcpClient mTcpClient;
     private GameData mGameData;
     private RelativeLayout record;
+    private ImageView voiceView;
     private static final String TAG = "@vir MainActivity";
-
-
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -90,6 +92,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         record = (RelativeLayout) findViewById(R.id.monitor_game);
+        voiceView = (ImageView) findViewById(R.id.input_voice);
     }
 
     private void TcpInit() {
@@ -107,6 +110,15 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 ActivityUtil.startActivity(MainActivity.this, MonitorGameActivity.class);
+            }
+        });
+        voiceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                RecordFragment recordFragment = new RecordFragment();
+                recordFragment.show(transaction,"record");
+
             }
         });
     }

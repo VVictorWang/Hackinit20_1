@@ -4,5 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="gray">#6e6d6e</color>
+    <color name="gray_white">#b9b6b9</color>
     <color name="white">#ffffff</color>
+    <color name="yellow">#F99503</color>
+    <color name="background">#dbe4eb</color>
+    <color name="backgroundtop">#2e8ed4</color>
+    <color name="back_week">#8ca6ca</color>
 </resources>

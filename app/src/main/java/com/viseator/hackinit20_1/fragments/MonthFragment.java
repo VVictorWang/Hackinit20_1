@@ -4,33 +4,36 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.viseator.hackinit20_1.R;
-import com.viseator.hackinit20_1.adapters.ExcelAdapter;
 
 
-public class ThisWeekFragment extends Fragment {
+public class MonthFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     private String mParam1;
     private String mParam2;
-    private RecyclerView weekday_list,game_list;
-    private ExcelAdapter weekday_adapter;
-    private View rootView;
 
 
-    public ThisWeekFragment() {
+    public MonthFragment() {
         // Required empty public constructor
     }
 
-
-    public static ThisWeekFragment newInstance(String param1, String param2) {
-        ThisWeekFragment fragment = new ThisWeekFragment();
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment MonthFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static MonthFragment newInstance(String param1, String param2) {
+        MonthFragment fragment = new MonthFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -50,24 +53,8 @@ public class ThisWeekFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_this_week, container, false);
         // Inflate the layout for this fragment
-        initView();
-        return rootView;
+        return inflater.inflate(R.layout.fragment_month, container, false);
     }
-
-    private void initView() {
-        weekday_list = (RecyclerView) rootView.findViewById(R.id.hour_list_week);
-        weekday_adapter = new ExcelAdapter(getActivity());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        weekday_list.setLayoutManager(linearLayoutManager);
-        weekday_list.setAdapter(weekday_adapter);
-
-    }
-
-
-
-
 
 }

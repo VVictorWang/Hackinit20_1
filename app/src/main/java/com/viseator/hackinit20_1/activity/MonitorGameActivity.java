@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.viseator.hackinit20_1.BaseActivity;
 import com.viseator.hackinit20_1.R;
 import com.viseator.hackinit20_1.adapters.FragmentAdapter;
+import com.viseator.hackinit20_1.fragments.ThisWeekFragment;
 import com.viseator.hackinit20_1.fragments.TodayDataFragment;
 
 public class MonitorGameActivity extends BaseActivity {
@@ -35,6 +36,7 @@ public class MonitorGameActivity extends BaseActivity {
         mViewPager = (ViewPager) findViewById(R.id.monitor_viewpager);
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         fragmentAdapter.addFragment(new TodayDataFragment(),"今日");
+        fragmentAdapter.addFragment(new ThisWeekFragment(), "本周");
         mViewPager.setAdapter(fragmentAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
