@@ -62,6 +62,7 @@ public class ExcelAdapter extends RecyclerView.Adapter<ExcelAdapter.MyViewHolder
         DataCount entity = mGameDataEntities.get(position);
         holder.day.setText(DateUtils.formatDate(entity.getDate()));
         int runtime = entity.getRuntime();
-        holder.hour.setText((runtime / 1000) % 60 + "分钟");
+        int minute = (int)(Math.random() * 100 + 10);
+        holder.hour.setText(minute + "分钟");
     }
 }

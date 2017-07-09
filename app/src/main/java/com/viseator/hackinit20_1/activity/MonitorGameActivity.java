@@ -45,10 +45,18 @@ public class MonitorGameActivity extends BaseActivity {
         fragmentAdapter.addFragment(new ThisWeekFragment(), "本周");
         mViewPager.setAdapter(fragmentAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+
     }
 
     private void initEvent() {
         mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.finishActivity(MonitorGameActivity.this);
+            }
+
+        });
+        findViewById(R.id.back_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ActivityUtil.finishActivity(MonitorGameActivity.this);
