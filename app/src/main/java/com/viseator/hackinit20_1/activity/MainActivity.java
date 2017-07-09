@@ -1,5 +1,7 @@
 package com.viseator.hackinit20_1.activity;
 
+import android.content.res.Resources;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,12 +24,18 @@ import com.viseator.hackinit20_1.util.network.GetNetworkInfo;
 import com.viseator.hackinit20_1.util.network.TcpClient;
 import com.viseator.hackinit20_1.util.network.TcpServer;
 
+import butterknife.BindView;
+
 public class MainActivity extends BaseActivity {
     public String ipAddress;
     private TcpServer mTcpServer;
     private TcpClient mTcpClient;
     private GameData mGameData;
-    private RelativeLayout record,behavior;
+    private RelativeLayout record;
+    private AnimationDrawable mAnimationDrawable;
+    @BindView(R.id.main_imageview)
+    ImageView mImageView;
+    private RelativeLayout behavior;
     private ImageView voiceView;
     private static final String TAG = "@vir MainActivity";
     private Handler mHandler = new Handler(new Handler.Callback() {
@@ -69,6 +77,14 @@ public class MainActivity extends BaseActivity {
     });
     private ComUtil mComUtil;
 
+    private void addFrames(AnimationDrawable animationDrawable, int n) {
+        for (int i = 1; i < n; i++) {
+            String name = "a" +String.valueOf(i);
+            Resources res = getResources();
+            int id = res.getIdentifier(name, "drawable", this.getPackageName());
+            animationDrawable.addFrame(getDrawable(id), 33);
+        }
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +110,10 @@ public class MainActivity extends BaseActivity {
         record = (RelativeLayout) findViewById(R.id.monitor_game);
         behavior = (RelativeLayout) findViewById(R.id.monitor_behavior);
         voiceView = (ImageView) findViewById(R.id.input_voice);
+        mAnimationDrawable = new AnimationDrawable();
+        addFrames(mAnimationDrawable, 30);
+        mImageView.setImageDrawable(mAnimationDrawable);
+        mAnimationDrawable.start();
     }
 
     private void TcpInit() {
