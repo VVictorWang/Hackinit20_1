@@ -132,20 +132,20 @@ public class MainActivity extends BaseActivity {
                 (message).setPositiveButton("回复", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_record_voice, null);
-                Button send = (Button) view.findViewById(R.id.send_voice_btn);
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setView(view);
-                final Dialog dialog1 = builder.create();
-                dialog1.show();
-                send.setOnClickListener(new View.OnClickListener() {
+                final EditText editText = new EditText(MainActivity.this);
+                builder.setView(editText).setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        EditText editText = (EditText) (view.findViewById(R.id.edit_text_voice));
+                    public void onClick(DialogInterface dialog, int which) {
                         sendMessage(editText.getText().toString());
-                        dialog1.dismiss();
+                        dialog.dismiss();
                     }
-                });
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create().show();
 
             }
         }).setNegativeButton("取消", null).create();
