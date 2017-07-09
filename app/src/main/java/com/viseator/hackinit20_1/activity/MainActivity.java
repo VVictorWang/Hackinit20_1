@@ -118,7 +118,8 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 RecordFragment recordFragment = new RecordFragment();
-                recordFragment.show(transaction,"record");
+                transaction.add(recordFragment, "record");
+                transaction.commit();
 
             }
         });
